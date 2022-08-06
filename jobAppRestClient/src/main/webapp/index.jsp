@@ -13,12 +13,12 @@
 </head>
 <body>
 <jsp:include page="nav.jsp" />  
-<% String job = (Job) request.getAttribute("success"); %>
+<% String msg = (String) request.getAttribute("success"); %>
 
 <div class="page-container">
-<% if(job.getTitle() != null) { %>
+<% if(msg != null) { %>
 	<div class="alert alert-success alert-dismissible fade show alert-container" role="alert">
-  Successfully updated
+  <%=msg %>
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 <% } %>
