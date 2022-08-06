@@ -39,7 +39,8 @@ public class JobService implements IJobService {
 	@Override
 	public Job updateJob(Job job, long jobId) {
 		// TODO Auto-generated method stub
-		job.setJodId(jobId);
+//		job.setJodId(jobId);
+		repo.deleteById(jobId);
 		Job updatedJob = repo.save(job);
 		return updatedJob;
 	}

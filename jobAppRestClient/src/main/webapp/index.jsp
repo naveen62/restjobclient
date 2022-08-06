@@ -16,7 +16,7 @@
 <% String msg = (String) request.getAttribute("success"); %>
 
 <div class="page-container">
-<% if(msg != null) { %>
+<% if(msg.length() > 0) { %>
 	<div class="alert alert-success alert-dismissible fade show alert-container" role="alert">
   <%=msg %>
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>

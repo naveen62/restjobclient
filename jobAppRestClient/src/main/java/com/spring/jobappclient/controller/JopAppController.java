@@ -1,5 +1,6 @@
 package com.spring.jobappclient.controller;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ public class JopAppController {
 	@GetMapping("/")
 	public String getAllJobs(@ModelAttribute("success") String msg,Model m) {
 		List<Job> jobs = service.getAllJobs();
+		Collections.reverse(jobs);
 		m.addAttribute("jobs",jobs);
 		m.addAttribute("success",msg);
 		return "index.jsp";
@@ -39,9 +41,11 @@ public class JopAppController {
 	public String addJob(@RequestParam("title") String title,
 			@RequestParam("jobDesc") String jobDesc,
 			@RequestParam("exp") int exp,
-			@RequestParam("jobRole") String jobRole) {
+			@RequestParam("jobRole") String jobRole,
+			RedirectAttributes redirectAttributes) {
 		Job job = new Job(title, jobDesc, exp, jobRole);
 		service.createJob(job);
+		redirectAttributes.addFlashAttribute("success","Successfully Added");
 		return "redirect:/";
 	}
 	@GetMapping("/{job-id}")
@@ -51,8 +55,9 @@ public class JopAppController {
 		return "showJob.jsp";
 	}
 	@GetMapping("/delete-job/{jobId}")
-	public String deleteJob(@PathVariable("jobId") long jobId) {
+	public String deleteJob(@PathVariable("jobId") long jobId, RedirectAttributes ra) {
 		service.deleteJob(jobId);
+		ra.addFlashAttribute("success","Successfully Deleted");
 		return "redirect:/";
 	}
 	@GetMapping("/{jobId}-update-job")

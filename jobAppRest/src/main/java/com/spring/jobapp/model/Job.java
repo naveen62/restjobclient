@@ -10,6 +10,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -23,6 +26,7 @@ public class Job {
 	private String jobRole;
 	@JsonManagedReference
 	@OneToMany(mappedBy = "job")
+	@Cascade(CascadeType.DELETE)
 	private List<Candidate> candidates;
 	
 	
