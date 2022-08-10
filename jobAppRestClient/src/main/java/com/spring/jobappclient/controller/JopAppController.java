@@ -84,7 +84,7 @@ public class JopAppController {
 		List<Job> jobs = service.searchJob(search, type);
 		Job job = new Job();
 		m.addAttribute("jobs",jobs);
-		m.addAttribute("success",job);
+		m.addAttribute("success","");
 		return "index.jsp";
 	}
 	
